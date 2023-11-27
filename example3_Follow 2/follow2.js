@@ -1,17 +1,19 @@
-let x = [0, 0],
-  y = [0, 0],
-  segLength = 50;
+let x = [0, 0, 0, 0, 0], 
+    y = [0, 0, 0, 0, 0],
+    segLength = 50;
 
 function setup() {
   createCanvas(710, 400);
-  strokeWeight(20.0);
-  stroke(255, 100);
+  strokeWeight(5.0); 
+  stroke(0, 255, 0);
 }
 
 function draw() {
   background(0);
   dragSegment(0, mouseX, mouseY);
-  dragSegment(1, x[0], y[0]);
+  for (let i = 1; i < x.length; i++) {
+    dragSegment(i, x[i - 1], y[i - 1]);
+  }
 }
 
 function dragSegment(i, xin, yin) {

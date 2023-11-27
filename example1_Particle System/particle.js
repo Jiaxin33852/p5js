@@ -1,9 +1,9 @@
 let system;
 
 function setup() {
-  createCanvas(720, 400);
-  system = new ParticleSystem(createVector(width / 2, 50));
-}
+    createCanvas(720, 400);
+    system = new ParticleSystem(createVector(width / 2, height)); // change origin point to bottom
+  }
 
 function draw() {
   background(51);
@@ -13,11 +13,11 @@ function draw() {
 
 // A simple Particle class
 let Particle = function(position) {
-  this.acceleration = createVector(0, 0.05);
-  this.velocity = createVector(random(-1, 1), random(-1, 0));
-  this.position = position.copy();
-  this.lifespan = 255;
-};
+    this.acceleration = createVector(0, -0.05); 
+    this.velocity = createVector(random(-1, 1), random(-1, -5)); 
+    this.position = position.copy();
+    this.lifespan = 255;
+  };
 
 Particle.prototype.run = function() {
   this.update();
@@ -33,11 +33,11 @@ Particle.prototype.update = function(){
 
 // Method to display
 Particle.prototype.display = function() {
-  stroke(200, this.lifespan);
-  strokeWeight(2);
-  fill(127, this.lifespan);
-  ellipse(this.position.x, this.position.y, 12, 12);
-};
+    stroke(200, this.lifespan);
+    strokeWeight(2);
+    fill(0, 0, 255, this.lifespan); 
+    ellipse(this.position.x, this.position.y, 12, 12);
+  };
 
 // Is the particle still useful?
 Particle.prototype.isDead = function(){
